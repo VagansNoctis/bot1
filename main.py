@@ -1,10 +1,26 @@
 import subprocess
+import json
+import random
 
 telegram_path = 'C:\TelegramDesktop\Telegram.exe'
 
-flag = True
+flag = False
 
 joke = '\nЗаходят как-то русский, хохол и чукча в бар... Заходят-заходят и СДЫХАЮТСДЫХАЮТСДЫХАЮТСДЫХАЮТСДЫХАЮТСДЫХАЮТ'
+
+def load_database(file_path: str):
+    with open(file_path, 'r', encoding="utf-8") as file:
+        data = json.load(file)
+
+    return data
+
+def save_knowledge_base(filepath: str, data: dict):
+    with open(filepath, 'w') as file:
+        json.dump(data, file, indent=2)
+
+data = load_database('DataBase.json')
+
+save_knowledge_base('DataBase.json', data)
 
 while flag:
     user_input = input().lower()
@@ -20,7 +36,13 @@ while flag:
 
     elif 'телег' in user_input:
         print('Запускаю телеграм.')
-        subprocess.Popen(['open', 'C:\Users\Влудиус Блудиус\AppData\Local\Discord\Update.exe'])
+        #subprocess.Popen(['open', 'C:\Users\Влудиус Блудиус\AppData\Local\Discord\Update.exe'])
 
+    elif 'давай сыграем в слова' in user_input:
+        print('Хорошо. Назовите ваше слово.')
 
+        while True:
+            user_word = input()
+            val = random.choice(mas)
 
+print(data["a"])
